@@ -12,9 +12,10 @@ class AgentSlack < Formula
     libexec.install Dir["*"]
     libexec.install ".claude-plugin"
 
-    # Install dependencies
-    system "bun", "install", "--production", "--frozen-lockfile"
-    libexec.install "node_modules"
+    # Install dependencies in libexec where package.json lives
+    cd libexec do
+      system "bun", "install", "--production"
+    end
 
     # Create wrapper script that uses bun to run the CLI
     (bin/"agent-slack").write <<~EOS
@@ -24,6 +25,6 @@ class AgentSlack < Formula
   end
 
   test do
-    assert_match "Usage:", shell_output("#{bin}/agent-slack --help")
+    assert_match "agent-slack", shell_output("#{bin}/agent-slack --help")
   end
 end
