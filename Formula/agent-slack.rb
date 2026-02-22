@@ -2,7 +2,7 @@ class AgentSlack < Formula
   desc "Slack CLI tool for AI agents - replaces MCP Slack tools with a token-efficient CLI"
   homepage "https://github.com/Asafrose/agent-slack"
   url "https://github.com/Asafrose/agent-slack.git",
-      tag: "v0.3.3"
+      tag: "v0.3.4"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
